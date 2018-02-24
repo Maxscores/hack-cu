@@ -1,0 +1,12 @@
+.header a {
+  text-decoration: none;
+  color: white;
+}
+
+.header {
+  background-color: navy;
+}
+
+.header h1 {
+  padding: 20px 0;
+}
