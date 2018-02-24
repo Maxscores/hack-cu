@@ -5,6 +5,9 @@
 
 .header {
   background-color: navy;
+  background-image: url('../../assets/header.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .header h1 {

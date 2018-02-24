@@ -1,10 +1,10 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { Home } from '../components/Home/Home'
-import { About } from '../components/About/About'
-import { Bitcoin } from '../components/Bitcoin/Bitcoin'
-import { Ethereum } from '../components/Ethereum/Ethereum'
-import { Compare } from '../components/Compare/Compare'
+import { Home } from '../Home/Home'
+import { About } from '../About/About'
+import { Bitcoin } from '../Bitcoin/Bitcoin'
+import { Ethereum } from '../Ethereum/Ethereum'
+import { Compare } from '../Compare/Compare'
 
 export const Main = () => (
   <Switch>
