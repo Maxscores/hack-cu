@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { getFeedback, getPrices } from '../../api/apiCall'
 import { cleanCryptoData } from '../../cleaner'
+import { ScatterChart } from 'react-chartkick';
 import { mock } from '../../mockData'
 import { Chart } from 'react-google-charts'
 
@@ -23,6 +24,12 @@ export class Bitcoin extends Component {
       <div className="Bitcoin">
         Bitcoin
         <div className="content">
+        <ScatterChart data={this.state.current} 
+                      xtitle='Time'
+                      ytitle='Price'
+                      min={null}
+                      max={null}
+                      library={{height: "300px"}} />
         {
           this.state.current &&
           <Chart

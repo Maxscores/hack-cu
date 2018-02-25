@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { getFeedback, getPrices } from '../../api/apiCall'
 import { cleanCryptoData } from '../../cleaner'
 import { mock } from '../../mockData'
-import { LineChart } from 'react-chartkick';
+import { ScatterChart } from 'react-chartkick';
 import { Chart } from 'react-google-charts'
-window.Chart = require('chart.js');
 
 export class Compare extends Component {
   constructor(props) {
@@ -39,12 +38,12 @@ export class Compare extends Component {
       <div className="compare">
         Compare
         <div className="content">
-        <LineChart data={data}
-                   xtitle='Time'
-                   ytitle='Price'
-                   min={null}
-                   max={null}
-                   library={{height: "500px"}} />
+        <ScatterChart  data={data}
+                       xtitle='Time'
+                       ytitle='Price'
+                       min={null}
+                       max={null}
+                       library={{height: "300px"}} />
         </div>
       </div>
     )

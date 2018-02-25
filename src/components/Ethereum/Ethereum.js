@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { getFeedback, getPrices } from '../../api/apiCall'
 import { cleanCryptoData } from '../../cleaner'
+import { ScatterChart } from 'react-chartkick';
 import { mock } from '../../mockData'
 import { Chart } from 'react-google-charts'
 
@@ -12,10 +13,8 @@ export class Ethereum extends Component {
 
   async componentDidMount () {
     const ethPrice = await getPrices('ETH')
-    debugger;
     const cleanEth = cleanCryptoData(ethPrice)
     
-    console.log('clean: ', cleanEth)
     this.setState({current: cleanEth})
   }
 
@@ -24,6 +23,12 @@ export class Ethereum extends Component {
       <div className="Ethereum">
         Ethereum
         <div className="content">
+        <ScatterChart data={this.state.current} 
+                      xtitle='Time'
+                      ytitle='Price'
+                      min={null}
+                      max={null}
+                      library={{height: "300px"}} />
         {
           this.state.current &&
           <Chart
