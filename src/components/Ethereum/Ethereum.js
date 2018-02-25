@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { getFeedback, getPrices } from '../../api/apiCall'
+import { getPrices } from '../../api/apiCall'
 import { cleanCryptoData } from '../../cleaner'
 import { ScatterChart } from 'react-chartkick';
-import { mock } from '../../mockData'
+// import { mock } from '../../mockData'
 import { Chart } from 'react-google-charts'
 
 export class Ethereum extends Component {
