@@ -1,4 +1,3 @@
-
 export const cleanCryptoData = (data) => {
   const recent = data.Data.reverse()
 
@@ -10,20 +9,18 @@ export const cleanCryptoData = (data) => {
     return dataPoint
   })
 
-  console.log('current: ', current)
-
   return [['time', 'price'], ...current]
+}
 
-  //console.log('24: ', last24, 'next: ', next)
+export const weekCryptoData = (data) => {
+  const recent = data.Data.reverse()
 
+  let time = 0
+  const week = recent.map(hour => {
+    const dataPoint = [time, hour.close]
+    time--
+    return dataPoint
+  })
 
-  // allData = {
-  //   current: [[0, 9999], {time: 0200, price: 8999}],
-  //   yesterday: {},
-  //   twoAgo: {},
-  //   threeAgo: {},
-  //   fourAgo: {},
-  //   fiveAgo: {},
-  //   sixAgo: {}
-  // }
+  return [['time', 'price'], ...week]
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { getFeedback, getPrices } from '../../api/apiCall'
+import { getPrices } from '../../api/apiCall'
 import { cleanCryptoData } from '../../cleaner'
-import { mock } from '../../mockData'
-import { LineChart } from 'react-chartkick';
-import { Chart } from 'react-google-charts'
-window.Chart = require('chart.js');
+//import { mock } from '../../mockData'
+import { LineChart } from 'react-chartkick'
+//import { Chart } from 'react-google-charts'
+import { compareData } from '../../normalize'
+window.Chart = require('chart.js')
 
 export class Compare extends Component {
   constructor(props) {
@@ -21,10 +22,16 @@ export class Compare extends Component {
 
     const cleanEth = cleanCryptoData(ethPrice)
     const cleanBitcoin = cleanCryptoData(bitcoinPrice)
+
+    // console.log('eth: ', cleanEth)
+
+    const compareEth = compareData(cleanEth)
+    const compareBit = compareData(cleanBitcoin)
+
     
     this.setState({
-      ethereum: cleanEth,
-      bitcoin: cleanBitcoin
+      ethereum: compareEth,
+      bitcoin: compareBit
     })
   }
 
@@ -42,8 +49,8 @@ export class Compare extends Component {
         <LineChart data={data}
                    xtitle='Time'
                    ytitle='Price'
-                   min={null}
-                   max={null}
+                   min={0}
+                   max={1}
                    library={{height: "500px"}} />
         </div>
       </div>

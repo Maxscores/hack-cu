@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { getFeedback, getPrices } from '../../api/apiCall'
-import { cleanCryptoData } from '../../cleaner'
-import { mock } from '../../mockData'
+import { getPrices } from '../../api/apiCall'
+import { cleanCryptoData, weekCryptoData } from '../../cleaner'
+//import { mock } from '../../mockData'
 import { Chart } from 'react-google-charts'
+import { LineChart, Timeline } from 'react-chartkick'
+window.Chart = require('chart.js')
 
 export class Bitcoin extends Component {
   constructor(props) {
@@ -13,15 +15,27 @@ export class Bitcoin extends Component {
   async componentDidMount () {
     const bitcoinPrice = await getPrices('BTC')
     const cleanBit = cleanCryptoData(bitcoinPrice)
+    const weekBit = weekCryptoData(bitcoinPrice)
     
-    console.log('clean: ', cleanBit)
-    this.setState({current: cleanBit})
+    this.setState({
+      current: cleanBit,
+      week: weekBit
+    })
   }
 
   render () {
     return (
       <div className="Bitcoin">
         Bitcoin
+      {
+        this.state.week &&
+        <LineChart data={this.state.week}
+             xtitle='Time'
+             ytitle='Price'
+             min={null}
+             max={null}
+             library={{height: "500px"}} />
+      }
         <div className="content">
         {
           this.state.current &&
