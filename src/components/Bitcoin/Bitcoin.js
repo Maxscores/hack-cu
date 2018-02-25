@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import { ScatterChart } from 'react-chartkick';
 import { getPrices } from '../../api/apiCall'
 import { cleanCryptoData, weekCryptoData } from '../../cleaner'
-//import { mock } from '../../mockData'
 import { Chart } from 'react-google-charts'
-import { LineChart, Timeline } from 'react-chartkick'
 import './Bitcoin.css'
-window.Chart = require('chart.js')  
+import { LineChart } from 'react-chartkick'
+window.Chart = require('chart.js')
 
 export class Bitcoin extends Component {
   constructor(props) {
@@ -15,6 +14,9 @@ export class Bitcoin extends Component {
   }
 
   async componentDidMount () {
+    //also need:
+    //twitter mentions, twitter x price
+
     const bitcoinPrice = await getPrices('BTC')
     const cleanBit = cleanCryptoData(bitcoinPrice)
     const weekBit = weekCryptoData(bitcoinPrice)
@@ -30,18 +32,29 @@ export class Bitcoin extends Component {
       <div className="Bitcoin">
         Bitcoin
         <div className='graph-container'>
+      {
+        this.state.week &&
+        <LineChart data={this.state.week}
+             title='Bitcoin price - 1 week (last 168 hrs)'
+             xtitle='Time'
+             ytitle='Price'
+             min={null}
+             max={null}
+             width='100%'
+             height='500px' />
+      }
+        <div className="content">
         {
-          this.state.week &&
-          <LineChart data={this.state.week}
-               className='graph'
+          this.state.current &&
+          <LineChart data={this.state.current}
+               title='Bitcoin price - 1 day (last 24 hrs)'
                xtitle='Time'
                ytitle='Price'
                min={null}
                max={null}
                width='100%'
-               height='300px' />
+               height='500px' />
         }
-          <div className="content">
           <ScatterChart data={this.state.current} 
                         className='graph'
                         xtitle='Time'
@@ -49,7 +62,7 @@ export class Bitcoin extends Component {
                         min={null}
                         max={null}
                         width='100%'
-                        height='300px' />
+                        height='500px' />
           {
             this.state.current &&
             <Chart
@@ -70,7 +83,7 @@ export class Bitcoin extends Component {
               }}
               graph_id="ScatterChart"
               width='100%'
-              height='300px'
+              height='500px'
               legend_toggle
             />
           }
