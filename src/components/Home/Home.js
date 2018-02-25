@@ -1,20 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Home.css'
 
 export const Home = () => {
 
   return (
-    <div className='home'>
-      <div className='product'>
-        <h2>Stuff</h2>
-        <p>Lorem impsum</p>
-        <button>Bitcoin</button>
-        <button>Ethereum</button>
-      </div>
-      <div className='compare'>
-        <h2>Compare</h2>
-        <p>Lorem ipsum</p>
-        <button>Compare</button>
+    <div className='home'>\
+      <div className='intro'>
+        <h1>BlockTweet</h1>
+        <Link to='/about'>
+          <h2 className='explore'>Explore</h2>
+        </Link>
       </div>
     </div>
   )

@@ -6,7 +6,7 @@ import './header.css'
 export const Header = () => (
   <div className='header'>
     <Link to='/'>
-      <h1>CryptoCurrency</h1>
+      <h1>BlockTweet</h1>
     </Link>
     <Nav />
   </div>

@@ -4,6 +4,7 @@ import { getPrices } from '../../api/apiCall'
 import { cleanCryptoData, weekCryptoData } from '../../cleaner'
 import { Chart } from 'react-google-charts'
 import './Bitcoin.css'
+import logo from '../../Bitcoin_logo.svg';
 import { LineChart } from 'react-chartkick'
 window.Chart = require('chart.js')
 
@@ -30,7 +31,7 @@ export class Bitcoin extends Component {
   render () {
     return (
       <div className="Bitcoin">
-        Bitcoin
+        <img src={logo} />
         <div className='graph-container'>
       {
         this.state.week &&
