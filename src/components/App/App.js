@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 
 //components:
-import { Header } from '../Header/header'
+import { Header } from '../Header/Header'
 import { Main } from '../Main/Main'
 window.Chart = require('chart.js');
 
