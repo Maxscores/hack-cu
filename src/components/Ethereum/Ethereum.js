@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { getFeedback, getPrices } from '../../api/apiCall'
+import { getPrices } from '../../api/apiCall'
 import { cleanCryptoData } from '../../cleaner'
-import { mock } from '../../mockData'
+// import { mock } from '../../mockData'
 import { Chart } from 'react-google-charts'
 
 export class Ethereum extends Component {
@@ -12,10 +12,8 @@ export class Ethereum extends Component {
 
   async componentDidMount () {
     const ethPrice = await getPrices('ETH')
-    debugger;
     const cleanEth = cleanCryptoData(ethPrice)
     
-    console.log('clean: ', cleanEth)
     this.setState({current: cleanEth})
   }
 
