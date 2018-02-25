@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { getPrices } from '../../api/apiCall'
 import { cleanCryptoData, weekCryptoData } from '../../cleaner'
-//import { mock } from '../../mockData'
 import { Chart } from 'react-google-charts'
-import { LineChart, Timeline } from 'react-chartkick'
+import { LineChart } from 'react-chartkick'
 window.Chart = require('chart.js')
 
 export class Bitcoin extends Component {
@@ -13,6 +12,9 @@ export class Bitcoin extends Component {
   }
 
   async componentDidMount () {
+    //also need:
+    //twitter mentions, twitter x price
+
     const bitcoinPrice = await getPrices('BTC')
     const cleanBit = cleanCryptoData(bitcoinPrice)
     const weekBit = weekCryptoData(bitcoinPrice)
@@ -30,6 +32,7 @@ export class Bitcoin extends Component {
       {
         this.state.week &&
         <LineChart data={this.state.week}
+             title='Bitcoin price - 1 week (last 168 hrs)'
              xtitle='Time'
              ytitle='Price'
              min={null}
@@ -39,26 +42,13 @@ export class Bitcoin extends Component {
         <div className="content">
         {
           this.state.current &&
-          <Chart
-            chartType="ScatterChart"
-            data={this.state.current}
-            options={{
-              title: 'Price over Time',
-              hAxis: { title: 'Time', maxValue: 0 },
-              vAxis: { title: 'Price' },
-              trendlines: {
-                0: {
-                  type: 'polynomial',
-                  degree: 3,
-                  visibleInLegend: true,
-                }
-              }
-            }}
-            graph_id="ScatterChart"
-            width="100%"
-            height="400px"
-            legend_toggle
-          />
+          <LineChart data={this.state.current}
+               title='Bitcoin price - 1 day (last 24 hrs)'
+               xtitle='Time'
+               ytitle='Price'
+               min={null}
+               max={null}
+               library={{height: "500px"}} />
         }
         </div>
       </div>

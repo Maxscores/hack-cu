@@ -20,3 +20,5 @@ export const getPrices = async(code) => {
 
   return await response.json()
 }
+
+
