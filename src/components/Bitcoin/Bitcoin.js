@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { ScatterChart } from 'react-chartkick';
 import { getPrices } from '../../api/apiCall'
 import { cleanCryptoData, weekCryptoData } from '../../cleaner'
 import { Chart } from 'react-google-charts'
+import './Bitcoin.css'
 import { LineChart } from 'react-chartkick'
 window.Chart = require('chart.js')
 
@@ -29,6 +31,7 @@ export class Bitcoin extends Component {
     return (
       <div className="Bitcoin">
         Bitcoin
+        <div className='graph-container'>
       {
         this.state.week &&
         <LineChart data={this.state.week}
@@ -37,7 +40,8 @@ export class Bitcoin extends Component {
              ytitle='Price'
              min={null}
              max={null}
-             library={{height: "500px"}} />
+             width='100%'
+             height='500px' />
       }
         <div className="content">
         {
@@ -48,8 +52,42 @@ export class Bitcoin extends Component {
                ytitle='Price'
                min={null}
                max={null}
-               library={{height: "500px"}} />
+               width='100%'
+               height='500px' />
         }
+          <ScatterChart data={this.state.current} 
+                        className='graph'
+                        xtitle='Time'
+                        ytitle='Price'
+                        min={null}
+                        max={null}
+                        width='100%'
+                        height='500px' />
+          {
+            this.state.current &&
+            <Chart
+              chartType="ScatterChart"
+              className='graph'
+              data={this.state.current}
+              options={{
+                title: 'Price over Time',
+                hAxis: { title: 'Time', maxValue: 0 },
+                vAxis: { title: 'Price' },
+                trendlines: {
+                  0: {
+                    type: 'polynomial',
+                    degree: 3,
+                    visibleInLegend: true,
+                  }
+                }
+              }}
+              graph_id="ScatterChart"
+              width='100%'
+              height='500px'
+              legend_toggle
+            />
+          }
+          </div>
         </div>
       </div>
     )

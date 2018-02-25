@@ -58,21 +58,23 @@ export class Compare extends Component {
     return (
       <div className="compare">
         Compare
-        <div className="content">
+        <div className="content graph-container">
         <LineChart data={dayData}
                    title='Price (normalized) for comparison - 1 day (past 24 hrs)'
                    xtitle='Time'
                    ytitle='Price'
                    min={0}
                    max={1}
-                   library={{height: "500px"}} />
+                   width='100%'
+                   height='500px' />
         <LineChart data={weekData}
                    title='Price (normalized) for comparison - 1 week (past 168 hrs)'
                    xtitle='Time'
                    ytitle='Price'
                    min={0}
                    max={1}
-                   library={{height: "500px"}} />
+                   width='100%'
+                   height='500px' />
         </div>
       </div>
     )
