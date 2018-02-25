@@ -7,9 +7,8 @@ export const compareData = (data) => {
     if (data[i][1] > max) max = data[i][1]
   }
 
-  console.log('min: ', min, 'max: ', max)
   const normalized = data.map(num => [num[0], normalize(num[1], min, max)])
-  console.log('normalized: ', normalized)
+
   return normalized
 }
 
@@ -17,5 +16,85 @@ const normalize = (num, min, max) => {
   let result = (num - min) / (max - min)
 
   return result
+}
+
+export const compareTwitterBit = (data) => {
+  console.log('twitterdat: ', data)
+  
+  const recent = data.bitcoin.reverse()
+  const last24 = recent.filter(item => item.hours_ago > -24)
+  console.log('last24: ', last24)
+
+  let min = +Infinity
+  let max = -Infinity
+
+  for(let i = 0; i < last24.length; i++) {
+    if (last24[i].normalized_score < min) min = last24[i].normalized_score
+    if (last24[i].normalized_score > max) max = last24[i].normalized_score
+  }
+
+  const normalized = last24.map(item => [item.hours_ago, normalize(item.normalized_score, min, max)])
+  console.log('normalized: ', normalized)
+  return normalized
+}
+
+export const compareTwitWeekBit = (data) => {
+  console.log('twitterdat: ', data)
+  
+  const recent = data.bitcoin.reverse()
+  const lastWeek = recent.filter(item => item.hours_ago > -168)
+  console.log('lastWeek: ', lastWeek)
+
+  let min = +Infinity
+  let max = -Infinity
+
+  for(let i = 0; i < lastWeek.length; i++) {
+    if (lastWeek[i].normalized_score < min) min = lastWeek[i].normalized_score
+    if (lastWeek[i].normalized_score > max) max = lastWeek[i].normalized_score
+  }
+
+  const normalized = lastWeek.map(item => [item.hours_ago, normalize(item.normalized_score, min, max)])
+  console.log('normalized: ', normalized)
+  return normalized 
+}
+
+export const compareTwitterEth = (data) => {
+  console.log('twitterdat: ', data)
+  
+  const recent = data.ethereum.reverse()
+  const last24 = recent.filter(item => item.hours_ago > -24)
+  console.log('last24: ', last24)
+
+  let min = +Infinity
+  let max = -Infinity
+
+  for(let i = 0; i < last24.length; i++) {
+    if (last24[i].normalized_score < min) min = last24[i].normalized_score
+    if (last24[i].normalized_score > max) max = last24[i].normalized_score
+  }
+
+  const normalized = last24.map(item => [item.hours_ago, normalize(item.normalized_score, min, max)])
+  console.log('normalized: ', normalized)
+  return normalized
+}
+
+export const compareTwitWeekEth = (data) => {
+  console.log('twitterdat: ', data)
+  
+  const recent = data.ethereum.reverse()
+  const lastWeek = recent.filter(item => item.hours_ago > -168)
+  console.log('lastWeek: ', lastWeek)
+
+  let min = +Infinity
+  let max = -Infinity
+
+  for(let i = 0; i < lastWeek.length; i++) {
+    if (lastWeek[i].normalized_score < min) min = lastWeek[i].normalized_score
+    if (lastWeek[i].normalized_score > max) max = lastWeek[i].normalized_score
+  }
+
+  const normalized = lastWeek.map(item => [item.hours_ago, normalize(item.normalized_score, min, max)])
+  console.log('normalized: ', normalized)
+  return normalized 
 }
 

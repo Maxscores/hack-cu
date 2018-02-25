@@ -21,4 +21,10 @@ export const getPrices = async(code) => {
   return await response.json()
 }
 
+export const allTwitter = async() => {
+  const response = await fetch('https://cors-anywhere.herokuapp.com/http://hackcuv4.herokuapp.com/api/v1/hour_sentiment')
+
+  return await response.json()
+}
+
 
