@@ -1,5 +1,5 @@
 .home {
-  background-image: url('https://thumbs.gfycat.com/LargePolishedLarva-size_restricted.gif');
+  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/E6xpS0jFxik7ugje7/videoblocks-digital-matrix-particles-grid-virtual-reality-abstract-cyber-space-environment-background_b-bnygt6g_thumbnail-full01.png');
   height: 900px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -14,12 +14,11 @@
 
 .intro {
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.8;
   width: 50%;
   margin: auto;
   position: relative;
-  top: 125px;
-  padding: 100px 50px;
+  top: 125px; padding: 100px 50px;
 }
 
 .explore {
