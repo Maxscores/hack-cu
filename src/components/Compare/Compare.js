@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { getPrices } from '../../api/apiCall'
+import { getPrices, allTwitter } from '../../api/apiCall'
 import { cleanCryptoData, weekCryptoData } from '../../cleaner'
 import { LineChart } from 'react-chartkick'
-import { compareData } from '../../normalize'
+import { compareData, compareTwitterBit, compareTwitWeekBit, compareTwitterEth, compareTwitWeekEth } from '../../normalize'
 window.Chart = require('chart.js')
 
 export class Compare extends Component {
@@ -19,6 +19,7 @@ export class Compare extends Component {
   async componentDidMount () {
     const ethPrice = await getPrices('ETH')
     const bitcoinPrice = await getPrices('BTC')
+    const twitterData = await allTwitter()
     //day twitter comp
     //week twitter comp
 
@@ -33,11 +34,22 @@ export class Compare extends Component {
     const weekEthComp = compareData(weekEthData)
     const weekBitComp = compareData(weekBitData)
 
+    const twitEthNormalized = compareTwitterEth(twitterData)
+    const weekTwitEthNormalized = compareTwitWeekEth(twitterData)
+    const twitBitNormalized = compareTwitterBit(twitterData)
+    const weekTwitBitNormalized = compareTwitWeekBit(twitterData)
+
+
+
     this.setState({
       ethereum: compareEth,
       bitcoin: compareBit,
       ethWeek: weekEthComp,
-      bitWeek: weekBitComp
+      bitWeek: weekBitComp,
+      twitEth: twitEthNormalized,
+      twitBit: twitBitNormalized,
+      twitEthWeek: weekTwitEthNormalized,
+      twitBitWeek: weekTwitBitNormalized
     })
   }
 
@@ -55,10 +67,38 @@ export class Compare extends Component {
       { "name": "ethereum",
         "data": this.state.ethWeek }
     ]
+
+    const twitDay = [
+      { "name": "bitcoin", 
+        "data": this.state.twitEth },
+      { "name": "ethereum",
+        "data": this.state.twitBit }
+    ]
+
+    const twitWeek = [
+      { "name": "bitcoin", 
+        "data": this.state.twitBitWeek },
+      { "name": "ethereum",
+        "data": this.state.twitEthWeek }
+    ]
+
     return (
       <div className="compare">
-        Compare
         <div className="content">
+        <LineChart data={twitDay}
+             title='Ethereum vs Bitcoin sentiment on Twitter - 1 day (last 24 hrs)'
+             xtitle='Time'
+             ytitle='Positivity (twitter analysis)'
+             min={null}
+             max={null}
+             library={{height: "500px"}} />
+        <LineChart data={twitWeek}
+             title='Ethereum vs Bitcoin sentiment on Twitter - 1 week (last 168 hrs)'
+             xtitle='Time'
+             ytitle='Positivity (twitter analysis)'
+             min={null}
+             max={null}
+             library={{height: "500px"}} />
         <LineChart data={dayData}
                    title='Price (normalized) for comparison - 1 day (past 24 hrs)'
                    xtitle='Time'
