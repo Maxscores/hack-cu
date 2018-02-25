@@ -56,38 +56,6 @@ export class Bitcoin extends Component {
                width='100%'
                height='500px' />
         }
-          <ScatterChart data={this.state.current} 
-                        className='graph'
-                        xtitle='Time'
-                        ytitle='Price'
-                        min={null}
-                        max={null}
-                        width='100%'
-                        height='500px' />
-          {
-            this.state.current &&
-            <Chart
-              chartType="ScatterChart"
-              className='graph'
-              data={this.state.current}
-              options={{
-                title: 'Price over Time',
-                hAxis: { title: 'Time', maxValue: 0 },
-                vAxis: { title: 'Price' },
-                trendlines: {
-                  0: {
-                    type: 'polynomial',
-                    degree: 3,
-                    visibleInLegend: true,
-                  }
-                }
-              }}
-              graph_id="ScatterChart"
-              width='100%'
-              height='500px'
-              legend_toggle
-            />
-          }
           </div>
         </div>
       </div>

@@ -42,13 +42,6 @@ export class Ethereum extends Component {
                height='500px' />
         }
         <div className="content">
-        <ScatterChart data={this.state.current} 
-                      xtitle='Time'
-                      ytitle='Price'
-                      min={null}
-                      max={null}
-                      width='100%'
-                      height='500px' />
         {
           this.state.current &&
           <LineChart data={this.state.current}
