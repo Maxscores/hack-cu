@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { getPrices, allTwitter } from '../../api/apiCall'
+import { ScatterChart } from 'react-chartkick';
 import { cleanCryptoData, weekCryptoData } from '../../cleaner'
 import { Chart } from 'react-google-charts'
+import './Bitcoin.css'
+import logo from '../../Bitcoin_logo.svg';
 import { LineChart } from 'react-chartkick'
 import { compareData, compareTwitterBit, compareTwitWeekBit } from '../../normalize'
 window.Chart = require('chart.js')
@@ -53,7 +56,6 @@ export class Bitcoin extends Component {
 
     return (
       <div className="Bitcoin">
-        Bitcoin
         <LineChart data={compareDay}
              title='Bitcoin sentiment on Twitter - 1 day (last 24 hrs)'
              xtitle='Time'
@@ -68,6 +70,8 @@ export class Bitcoin extends Component {
              min={null}
              max={null}
              library={{height: "500px"}} />
+        <img src={logo} />
+        <div className='graph-container'>
       {
         this.state.week &&
         <LineChart data={this.state.week}
@@ -76,7 +80,8 @@ export class Bitcoin extends Component {
              ytitle='Price'
              min={null}
              max={null}
-             library={{height: "500px"}} />
+             width='100%'
+             height='500px' />
       }
         <div className="content">
         {
@@ -87,8 +92,10 @@ export class Bitcoin extends Component {
                ytitle='Price'
                min={null}
                max={null}
-               library={{height: "500px"}} />
+               width='100%'
+               height='500px' />
         }
+          </div>
         </div>
       </div>
     )

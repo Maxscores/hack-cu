@@ -4,7 +4,7 @@ import { cleanCryptoData, weekCryptoData } from '../../cleaner'
 import { Chart } from 'react-google-charts'
 import { LineChart } from 'react-chartkick'
 import { compareData, compareTwitterEth, compareTwitWeekEth } from '../../normalize'
-
+import logo from '../../eth-logo.png';
 window.Chart = require('chart.js')
 
 export class Ethereum extends Component {
@@ -66,6 +66,8 @@ export class Ethereum extends Component {
              min={null}
              max={null}
              library={{height: "500px"}} />
+        <img src={logo} />
+        <div className='graph-container'>
         {
           this.state.week &&
           <LineChart data={this.state.week}
@@ -74,7 +76,8 @@ export class Ethereum extends Component {
                ytitle='Price'
                min={null}
                max={null}
-               library={{height: "500px"}} />
+               width='100%'
+               height='500px' />
         }
         <div className="content">
         {
@@ -85,8 +88,10 @@ export class Ethereum extends Component {
                ytitle='Price'
                min={null}
                max={null}
-               library={{height: "500px"}} />
+               width='100%'
+               height='500px' />
         }
+        </div>
         </div>
       </div>
     )
