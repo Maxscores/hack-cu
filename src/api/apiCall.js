@@ -15,15 +15,8 @@ export const getFeedback = async () => {
   }
 }
 
-export const getPrices = async(type) => {
-  const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.coinmarketcap.com/v1/ticker/${type}`)
-  const results = await response.json();
-
-  return results;
-}
-
-export const getBitcoin = async() => {
-  const response = await fetch('https://min-api.cryptocompare.com/data/histohour?fsym=BTC&tsym=USD')
+export const getPrices = async(code) => {
+  const response = await fetch(`https://min-api.cryptocompare.com/data/histohour?fsym=${code}&tsym=USD`)
 
   return await response.json()
 }

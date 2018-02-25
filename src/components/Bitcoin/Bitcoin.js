@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getFeedback, getPrices, getBitcoin } from '../../api/apiCall'
+import { getFeedback, getPrices } from '../../api/apiCall'
 import { cleanCryptoData } from '../../cleaner'
 import { mock } from '../../mockData'
 import { Chart } from 'react-google-charts'
@@ -11,7 +11,7 @@ export class Bitcoin extends Component {
   }
 
   async componentDidMount () {
-    const bitcoinPrice = await getBitcoin()
+    const bitcoinPrice = await getPrices('BTC')
     const cleanBit = cleanCryptoData(bitcoinPrice)
     
     console.log('clean: ', cleanBit)
