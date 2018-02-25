@@ -1,5 +1,29 @@
 export const getFeedback = async () => {
-  const response = await fetch('https://hackcuv4.herokuapp.com/api/v1/sentiment?text=')
+  const text = 'this is some text to analyze'
+  const url = `https://cors-anywhere.herokuapp.com/https://hackcuv4.herokuapp.com/api/v1/sentiment?text=${text}`
+  
+  try {
+    const response = await fetch(url)
+    if (response.status < 300) {
+      return await response.json()
+      
+    } else {
+      throw new Error ('could not get feedback')
+    }
+  } catch (error) {
+    throw error
+  }
+}
 
-  return response.json()
+export const getPrices = async(type) => {
+  const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.coinmarketcap.com/v1/ticker/${type}`)
+  const results = await response.json();
+
+  return results;
+}
+
+export const getBitcoin = async() => {
+  const response = await fetch('https://min-api.cryptocompare.com/data/histohour?fsym=BTC&tsym=USD')
+
+  return await response.json()
 }
