@@ -5,6 +5,7 @@ import { ScatterChart } from 'react-chartkick';
 import { cleanCryptoData, weekCryptoData } from '../../cleaner'
 import { Chart } from 'react-google-charts'
 import { LineChart } from 'react-chartkick'
+import logo from '../../eth-logo.png';
 window.Chart = require('chart.js')
 
 export class Ethereum extends Component {
@@ -27,7 +28,7 @@ export class Ethereum extends Component {
   render () {
     return (
       <div className="Ethereum">
-        Ethereum
+        <img src={logo} />
         <div className='graph-container'>
         {
           this.state.week &&
@@ -41,13 +42,6 @@ export class Ethereum extends Component {
                height='500px' />
         }
         <div className="content">
-        <ScatterChart data={this.state.current} 
-                      xtitle='Time'
-                      ytitle='Price'
-                      min={null}
-                      max={null}
-                      width='100%'
-                      height='500px' />
         {
           this.state.current &&
           <LineChart data={this.state.current}

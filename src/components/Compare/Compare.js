@@ -57,7 +57,7 @@ export class Compare extends Component {
     ]
     return (
       <div className="compare">
-        Compare
+        <h2>Comparison Analysis</h2>
         <div className="content graph-container">
         <LineChart data={dayData}
                    title='Price (normalized) for comparison - 1 day (past 24 hrs)'
