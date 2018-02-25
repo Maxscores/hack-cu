@@ -19,11 +19,8 @@ const normalize = (num, min, max) => {
 }
 
 export const compareTwitterBit = (data) => {
-  console.log('twitterdat: ', data)
-  
   const recent = data.bitcoin.reverse()
   const last24 = recent.filter(item => item.hours_ago > -24)
-  console.log('last24: ', last24)
 
   let min = +Infinity
   let max = -Infinity
@@ -34,16 +31,13 @@ export const compareTwitterBit = (data) => {
   }
 
   const normalized = last24.map(item => [item.hours_ago, normalize(item.normalized_score, min, max)])
-  console.log('normalized: ', normalized)
+
   return normalized
 }
 
 export const compareTwitWeekBit = (data) => {
-  console.log('twitterdat: ', data)
-  
   const recent = data.bitcoin.reverse()
   const lastWeek = recent.filter(item => item.hours_ago > -168)
-  console.log('lastWeek: ', lastWeek)
 
   let min = +Infinity
   let max = -Infinity
@@ -54,16 +48,13 @@ export const compareTwitWeekBit = (data) => {
   }
 
   const normalized = lastWeek.map(item => [item.hours_ago, normalize(item.normalized_score, min, max)])
-  console.log('normalized: ', normalized)
+
   return normalized 
 }
 
-export const compareTwitterEth = (data) => {
-  console.log('twitterdat: ', data)
-  
+export const compareTwitterEth = (data) => {  
   const recent = data.ethereum.reverse()
   const last24 = recent.filter(item => item.hours_ago > -24)
-  console.log('last24: ', last24)
 
   let min = +Infinity
   let max = -Infinity
@@ -74,16 +65,13 @@ export const compareTwitterEth = (data) => {
   }
 
   const normalized = last24.map(item => [item.hours_ago, normalize(item.normalized_score, min, max)])
-  console.log('normalized: ', normalized)
+
   return normalized
 }
 
-export const compareTwitWeekEth = (data) => {
-  console.log('twitterdat: ', data)
-  
+export const compareTwitWeekEth = (data) => {  
   const recent = data.ethereum.reverse()
   const lastWeek = recent.filter(item => item.hours_ago > -168)
-  console.log('lastWeek: ', lastWeek)
 
   let min = +Infinity
   let max = -Infinity
@@ -94,7 +82,7 @@ export const compareTwitWeekEth = (data) => {
   }
 
   const normalized = lastWeek.map(item => [item.hours_ago, normalize(item.normalized_score, min, max)])
-  console.log('normalized: ', normalized)
+
   return normalized 
 }
 

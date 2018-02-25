@@ -119,6 +119,7 @@ export class Compare extends Component {
                    height='500px' />
         </div>
       </div>
+      </div>
     )
   }
 }

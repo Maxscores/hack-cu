@@ -52,6 +52,8 @@ export class Ethereum extends Component {
 
     return (
       <div className="Ethereum">
+        <img src={logo} />
+        <div className='graph-container'>
         <LineChart data={compareDay}
              title='Ethereum sentiment on Twitter - 1 day (last 24 hrs)'
              xtitle='Time'
@@ -66,8 +68,6 @@ export class Ethereum extends Component {
              min={null}
              max={null}
              library={{height: "500px"}} />
-        <img src={logo} />
-        <div className='graph-container'>
         {
           this.state.week &&
           <LineChart data={this.state.week}
