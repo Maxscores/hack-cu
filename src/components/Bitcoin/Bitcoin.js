@@ -56,6 +56,8 @@ export class Bitcoin extends Component {
 
     return (
       <div className="Bitcoin">
+        <img src={logo} />
+        <div className='graph-container'>
         <LineChart data={compareDay}
              title='Bitcoin sentiment on Twitter - 1 day (last 24 hrs)'
              xtitle='Time'
@@ -70,8 +72,6 @@ export class Bitcoin extends Component {
              min={null}
              max={null}
              library={{height: "500px"}} />
-        <img src={logo} />
-        <div className='graph-container'>
       {
         this.state.week &&
         <LineChart data={this.state.week}

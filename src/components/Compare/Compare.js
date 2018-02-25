@@ -120,6 +120,7 @@ export class Compare extends Component {
           </div>
         </div>
       </div>
+      </div>
     )
   }
 }
